@@ -32,7 +32,7 @@
             <th>Rounded Score</th>
             <th>Metacritic Score</th>
           </tr>
-          <tr ng-repeat="x in value | orderBy: '-metacriticScore' track by $index">
+          <tr ng-repeat="x in value | orderBy: 'title' track by $index">
             <td>{{x.title}}</td>
             <td><s>{{x.normalPrice|currency:"$"}}</s> <span class="red-text">{{x.salePrice|currency:"$"}}</span></td>
             <td>{{x.roundedScore}}</td>
