@@ -26,11 +26,13 @@
         <tr>
           <th>Title</th>
           <th>Price</th>
-          <th>Score</th>
+          <th>Rounded Score</th>
+          <th>Metacritic Score</th>
         </tr>
-        <tr ng-repeat="x in dealsData track by $index">
+        <tr ng-repeat="x in dealsData | orderBy: '-metacriticScore' track by x.dealID">
           <td>{{x.title}}</td>
           <td><s>{{x.normalPrice|currency:"$"}}</s> <span class="red-text">{{x.salePrice|currency:"$"}}</span></td>
+          <td>{{x.metacriticScore|roundedScore}}</td>
           <td>{{x.metacriticScore}}</td>
         </tr>
       </table>
