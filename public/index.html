@@ -22,20 +22,24 @@
 	<body>
 		<div class="container" ng-app="myApp" ng-controller="dealsCtrl">
 			<h1>Deal Items</h1>
-      <table class="table table-bordered table-striped">
-        <tr>
-          <th>Title</th>
-          <th>Price</th>
-          <th>Rounded Score</th>
-          <th>Metacritic Score</th>
-        </tr>
-        <tr ng-repeat="x in dealsData | orderBy: '-metacriticScore' track by x.dealID">
-          <td>{{x.title}}</td>
-          <td><s>{{x.normalPrice|currency:"$"}}</s> <span class="red-text">{{x.salePrice|currency:"$"}}</span></td>
-          <td>{{x.metacriticScore|roundedScore}}</td>
-          <td>{{x.metacriticScore}}</td>
-        </tr>
-      </table>
+
+      <div ng-repeat="(key, value) in groupedDeals | orderBy:'key':true track by $index">
+        <h2>Group <span ng-bind="key">...</span></h2>
+        <table class="table table-bordered table-striped table-condensed">
+          <tr>
+            <th>Title</th>
+            <th>Price</th>
+            <th>Rounded Score</th>
+            <th>Metacritic Score</th>
+          </tr>
+          <tr ng-repeat="x in value | orderBy: '-metacriticScore' track by $index">
+            <td>{{x.title}}</td>
+            <td><s>{{x.normalPrice|currency:"$"}}</s> <span class="red-text">{{x.salePrice|currency:"$"}}</span></td>
+            <td>{{x.roundedScore}}</td>
+            <td>{{x.metacriticScore}}</td>
+          </tr>
+        </table>
+      </div>
     </div>
 	</body>
 </html>
