@@ -23,17 +23,17 @@
 		<div class="container" ng-app="myApp" ng-controller="dealsCtrl">
 			<h1>Deal Items</h1>
 
-      <div ng-repeat="(key, value) in groupedDeals | orderBy:'key':true track by $index">
-        <h2>Group <span ng-bind="key">...</span></h2>
+      <div ng-repeat="(key, value) in groupedDeals | orderObjectBy:value[0].roundedScore:true  track by $index">
+        <h2>Group <span ng-bind="value[0].roundedScore">...</span></h2>
         <table class="table table-bordered table-striped table-condensed">
           <tr>
-            <th>Title</th>
-            <th>Price</th>
-            <th>Rounded Score</th>
-            <th>Metacritic Score</th>
+            <th width="40%">Title</th>
+            <th width="20%">Price</th>
+            <th width="20%">Rounded Score</th>
+            <th width="20%">Metacritic Score</th>
           </tr>
           <tr ng-repeat="x in value | orderBy: 'title' track by $index">
-            <td>{{x.title}}</td>
+            <td><img src="{{x.thumb}}" width="50" class="img-rounded" /> {{x.title}}</td>
             <td><s>{{x.normalPrice|currency:"$"}}</s> <span class="red-text">{{x.salePrice|currency:"$"}}</span></td>
             <td>{{x.roundedScore}}</td>
             <td>{{x.metacriticScore}}</td>
