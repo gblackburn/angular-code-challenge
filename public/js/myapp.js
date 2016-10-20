@@ -11,12 +11,11 @@ app.filter('orderObjectBy', function() {
     });
 
     // I know this is hacky, but for some reason, Safari reads in the object in reverse
-    // so for now, if the browser is Safari, don't reverse it
-    var is_safari = navigator.userAgent.indexOf("Safari") > -1;
-    if (reverse && !is_safari) {
+    // so for now, if the browser is Chrome, reverse it
+    var is_chrome = navigator.userAgent.indexOf("Chrome") > -1;
+    if (reverse && is_chrome) {
       filtered.reverse();
     }
-
     return filtered;
   };
 });
