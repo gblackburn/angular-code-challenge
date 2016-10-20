@@ -1,7 +1,7 @@
 var app = angular.module('myApp', []);
 // since you can't use 'orderBy' on objects, a custom filter for ordering objects is necessary
 app.filter('orderObjectBy', function() {
-  return function(items, field, reverse) {
+  return function(items, field) {
     var filtered = [];
     angular.forEach(items, function(item) {
       filtered.push(item);
