@@ -1,4 +1,5 @@
 var app = angular.module('myApp', []);
+// since you can't use 'orderBy' on objects, a custom filter for ordering objects is necessary
 app.filter('orderObjectBy', function() {
   return function(items, field, reverse) {
     var filtered = [];
@@ -8,7 +9,6 @@ app.filter('orderObjectBy', function() {
     filtered.sort(function (a, b) {
       return (a[field] > b[field] ? 1 : -1);
     });
-    if(reverse) filtered.reverse();
     return filtered;
   };
 });
@@ -18,10 +18,12 @@ app.controller('dealsCtrl', function($scope, $http) {
     $scope.dealsData = response.data;
     $scope.groupedDeals = { };
 
+    // instead of a filter on the score, changed it to a function for use inside the GET callback
     function roundedScore(score) {
       var rounded = Math.ceil(score / 10) * 10;
       return rounded;
     };
+
     for ( var index in $scope.dealsData ) {
       var array = $scope.dealsData;
       var rounded = roundedScore(array[index].metacriticScore);

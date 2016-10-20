@@ -10,6 +10,17 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1">
     <script type="text/javascript" src="js/myapp.js"></script>
     <style type="text/css">
+      .description h3 {
+        margin: 0;
+        padding: 15px 15px 0 15px;
+      }
+      .description p {
+        padding: 15px 15px 5px 15px;
+      }
+      .description ul {
+        margin: 0 15px;
+        padding: 0 15px 15px;
+      }
       .red-text {
         color: red;
       }
@@ -21,9 +32,29 @@
 	</head>
 	<body>
 		<div class="container" ng-app="myApp" ng-controller="dealsCtrl">
-			<h1>Deal Items</h1>
+			<h1 class="text-center">Game Deals!</h1>
+      <div class="description bg-info">
+        <h3>Code Challenge Guidelines</h3>
+        <p><strong>Create a page that displays the returned information using the following criteria:</strong></p>
+        <ul>
+          <li>Deals must be grouped by a generated <code>score</code> property
+          <ul>
+            <li>The <code>score</code> property must be derived from the <code>metacriticScore</code> property which has a score range of 0-100</li>
+            <li>The <code>score</code> property must be rounded to the next greatest tens (96 -&gt; 100)</li>
+          </ul></li>
+          <li>The score groups must be listed in numerically descending order</li>
+          <li>Deals must be listed with their associated group
 
-      <div ng-repeat="(key, value) in groupedDeals | orderObjectBy:value[0].roundedScore:true  track by $index">
+          <ul>
+            <li>Deals must be listed by their <code>title</code> property and <code>score</code> property</li>
+            <li>Deals must be listed in alphabetically ascending order by <code>title</code> within their group</li>
+          </ul></li>
+          <li>The solution must be written entirely in javascript that is runnable by chrome (html/css are allowed of course)</li>
+          <li>You must also use <code>Angular</code> to generate your views and fetch your data</li>
+        </ul>
+      </div>
+
+      <div ng-repeat="(key, value) in groupedDeals | orderObjectBy:value[0].roundedScore track by $index">
         <h2>Group <span ng-bind="value[0].roundedScore">...</span></h2>
         <table class="table table-bordered table-striped table-condensed">
           <tr>
