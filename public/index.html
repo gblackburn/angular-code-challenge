@@ -54,7 +54,7 @@
         </ul>
       </div>
 
-      <div ng-repeat="(key, value) in groupedDeals | orderObjectBy:value[0].roundedScore track by $index">
+      <div ng-repeat="(key, value) in groupedDeals | orderObjectBy:value[0].roundedScore:true track by $index">
         <h2>Group <span ng-bind="value[0].roundedScore">...</span></h2>
         <table class="table table-bordered table-striped table-condensed">
           <tr>

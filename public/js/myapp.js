@@ -1,7 +1,7 @@
 var app = angular.module('myApp', []);
 // since you can't use 'orderBy' on objects, a custom filter for ordering objects is necessary
 app.filter('orderObjectBy', function() {
-  return function(items, field) {
+  return function(items, field, reverse) {
     var filtered = [];
     angular.forEach(items, function(item) {
       filtered.push(item);
@@ -9,6 +9,14 @@ app.filter('orderObjectBy', function() {
     filtered.sort(function (a, b) {
       return (a[field] > b[field] ? 1 : -1);
     });
+
+    // I know this is hacky, but for some reason, Safari reads in the object in reverse
+    // so for now, if the browser is Safari, don't reverse it
+    var is_safari = navigator.userAgent.indexOf("Safari") > -1;
+    if (reverse && !is_safari) {
+      filtered.reverse();
+    }
+
     return filtered;
   };
 });
