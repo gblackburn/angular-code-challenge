@@ -7,13 +7,10 @@ app.filter('orderObjectBy', function() {
       filtered.push(item);
     });
     filtered.sort(function (a, b) {
-      return (a[field] > b[field] ? 1 : -1);
+      return (parseInt(a[0][field]) > parseInt(b[0][field])) ? 1 : -1;
     });
 
-    // I know this is hacky, but for some reason, Safari reads in the object in reverse
-    // so for now, if the browser is Chrome, reverse it
-    var is_chrome = navigator.userAgent.indexOf("Chrome") > -1;
-    if (reverse && is_chrome) {
+    if (reverse) {
       filtered.reverse();
     }
     return filtered;
